@@ -1,0 +1,78 @@
+h1, h3 {
+    text-align: center;
+}
+
+
+.main-game-container {
+    display: flex;
+    flex-direction: row;
+    width: 1000px; /* Adjust width as needed */
+    height: 600px; /* Adjust height as needed */
+    justify-content: space-evenly;
+    margin: auto;
+    gap: 100px;
+    /* flex-wrap: wrap; */
+  } 
+  
+
+main .answer-display {
+    width: 40%; /* Each item takes up 50% of the container width */
+    height: 50%; /* Each item takes up 50% of the container height */
+    border: 2px solid black; /* Optional border for visual clarity */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+main .flag-display {
+    width: 50%; /* Each item takes up 50% of the container width */
+    height: 50%; /* Each item takes up 50% of the container height */
+    border: 2px solid black; /* Optional border for visual clarity */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+#player-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid black;
+    padding: 14px;
+    text-decoration: underline;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    justify-content: center;
+    margin: auto;
+}
+
+.game-button {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    padding: 8px 26px;
+
+}
+
+.hidden {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+    padding: 8px 26px;
+    /* visibility: hidden; */
+}
+
+/* .country-flags {
+    max-height: 33vmin;
+    margin-bottom: 32px;
+  } */
