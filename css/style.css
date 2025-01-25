@@ -11,7 +11,7 @@ h1, h3 {
     justify-content: space-evenly;
     margin: auto;
     gap: 100px;
-    /* flex-wrap: wrap; */
+    margin-bottom: 0px;
   } 
   
 
@@ -30,8 +30,28 @@ main .flag-display {
     border: 2px solid black; /* Optional border for visual clarity */
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
   }
+
+.flag-container {
+  position:relative;
+  top:0;
+  left:0;
+  width:60%;
+  height:60%;
+  background-image:'./assets/Travelman.png';
+  background-repeat:no-repeat;
+  background-size:contain;
+  /* visibility: hidden; */
+}
+
+.flag-container img {
+  display: flex;
+  width: 75%;
+  height: auto;
+  align-items: center;
+
+}
 
 #player-entry {
     display: flex;
@@ -47,7 +67,8 @@ main .flag-display {
     flex-direction: row;
     gap: 18px;
     justify-content: center;
-    margin: auto;
+    /* margin: auto; */
+    margin-top: 0px;
 }
 
 .game-button {

@@ -1,7 +1,7 @@
 
 console.log("this is a test")
 
-/* Psuedocode */ 
+/* Psuedocode */
 
 // need game initialization state 
 // need a game reset state gameReset (as an event listener)
@@ -20,65 +20,85 @@ console.log("this is a test")
 
 /*-------------- Constants -------------*/
 
-const state = {
-    answerSpace: "",
-}
+
 const maxGuesses = 5;
 
 const countryFlagFolder = [
-    'assets/Mexico.jpg',
+    './assets/Mexico.jpg',
+    './assets/India.jpg',
+    './assets/Canada.jpg',
+    './assets/China.jpg',
+    './assets/Italy.jpg',
+    './assets/United-States.jpg',
 ]
 
 /*---------- Variables (state) ---------*/
 
+let win;
 let lose;
 let gameOver;
-
+let outOfAttempts;
 
 /*----- Cached Element References  -----*/
+
+/* Buttons */
 const playButtonElement = document.getElementById("play")
-const playerEntryEl = document.getElementById("player-entry")
 const resetButtonElement = document.getElementById("restart")
-const flagContainerEl = document.getElementById('flag-container');
+
+/* Inputs & Displays */
+const playerEntryEl = document.getElementById("player-entry")
+const flagDisplayEl = document.getElementById('flag-display');
+
+/* Flag Images */
+const flags = document.getElementById('flag-container');
+// const flagMexicoLabel = Mexico.alt;
 
 
 /*-------------- Functions -------------*/
 
-const init = () => {  
-    state.answerSpace = ""
-    resetButtonElement.classList.add('hidden')
-    gameOver = false;
-    render()
-}
-
-const playButtonClick = () => {
-    state.answerSpace = "";
-    render()
-}
-
 const render = () => {
-    playerEntryEl.textContent = ""
-
+    playerEntryEl.value = ""
     if (gameOver === true) {
         resetButtonElement.classList.remove('hidden')
+        // flags.remove('hidden')
     }
 }
 
+const init = () => {
+    playerEntryEl.value = "";
+    resetButtonElement.classList.remove('hidden')
+    gameOver = false;
+    render()
+    console.log("init function is working")
+}
+
+init()
+
+const playButtonClick = () => {
+    playerEntryEl.value = "";
+    getRandomFlag()
+    render()
+    console.log("play button is working")
+}
+
+
 const checkGameOver = () => {
-    for (let i = 0; i < answer.length; i++) {
-     if(i !== "") 
-        gameOver = false
+    for (let i = 0; i < playerEntryEl.length; i++) {
+        if (i !== "" && playerEntryEl === flagMexicoLabel.stringSeparator)
+            gameOver = false
+        // } else {
+        //     resetButtonElement.classList.remove('hidden') 
     }
 }
 
 const stringSeparator = (playerEntryEl) => {
     return playerEntryEl.textContent.split('');
     console.log(stringSeparator)
-  }
-  
-  const spelledOutCountry = playerEntryEl;
-  const answer = stringSeparator(spelledOutCountry);
-  console.log(answer);
+}
+
+const spelledOutCountry = playerEntryEl;
+const answer = stringSeparator(spelledOutCountry);
+console.log(answer);
 
 const getRandomFlag = () => {
     const randomFlagIndex = Math.floor(Math.random() * countryFlagFolder.length);
@@ -86,15 +106,12 @@ const getRandomFlag = () => {
     const flag = document.createElement('img');
     flag.src = randomFlagImage;
 
-
-    container.innerHTML = ''; // Clear previous image, if any
-    container.appendChild(imgElement);
+    flags.innerHTML = ''; // Clear previous image, if any
+    flags.appendChild(imgElement);
     console.log(getRandomFlag)
 }
 
 /*----------- Event Listeners ----------*/
+playButtonElement.addEventListener('click', playButtonClick)
 
-
-// playButtonElement.addEventListener('click', playButtonClick)
-
-// resetButtonElement.addEventListener('click', init)
+resetButtonElement.addEventListener('click', init)
