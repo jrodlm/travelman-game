@@ -23,7 +23,7 @@ console.log("this is a test")
 
 const maxGuesses = 5;
 
-const countryFlagFolder = [
+const countryFlagArray = [
     './assets/Mexico.jpg',
     './assets/India.jpg',
     './assets/Canada.jpg',
@@ -43,7 +43,9 @@ let outOfAttempts;
 
 /* Buttons */
 const playButtonElement = document.getElementById("play")
-const resetButtonElement = document.getElementById("restart")
+const playAgainButtonElement = document.getElementById("restart")
+const submitButtonElement = document.getElementById("submit")
+const nextButtonElement = document.getElementById("next")
 
 /* Inputs & Displays */
 const playerEntryEl = document.getElementById("player-entry")
@@ -58,16 +60,37 @@ const flags = document.getElementById('flag-container');
 /*-------------- Functions -------------*/
 
 const render = () => {
-    playerEntryEl.value = ""
+    // playerEntryEl.value = ""
     if (gameOver === true) {
-        resetButtonElement.classList.remove('hidden')
+        playAgainButtonElement.classList.remove('hidden')
         // flags.remove('hidden')
     }
 }
 
-const init = () => {
+const getRandomFlag = () => {
+    const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
+    return countryFlagArray[randomFlagIndex];
+}
+    
+const changeFlag = () => {
+    const flag = document.querySelector("#countryFlagArray");
+    // flag.src = getRandomFlag();
+}
+
+const nextButtonClick = () => {
+    changeFlag();
+}
+
+const playButtonClick = () => {
     playerEntryEl.value = "";
-    resetButtonElement.classList.remove('hidden')
+    messageEl.textContent = "";
+    getRandomFlag()
+    render()
+    console.log("play button is working")
+}
+
+const init = () => {
+    playButtonClick()
     gameOver = false;
     render()
     console.log("init function is working")
@@ -75,12 +98,7 @@ const init = () => {
 
 init()
 
-const playButtonClick = () => {
-    playerEntryEl.value = "";
-    getRandomFlag()
-    render()
-    console.log("play button is working")
-}
+
 
 
 const checkGameOver = () => {
@@ -92,32 +110,39 @@ const checkGameOver = () => {
     }
 }
 
-const stringSeparator = (playerEntryEl) => {
-    return playerEntryEl.textContent.split('');
-    console.log(stringSeparator)
+// const stringSeparator = (playerEntryEl) => {
+//     return playerEntryEl.textContent.split('');
+//     console.log(stringSeparator)
+// }
+
+// const spelledOutCountry = playerEntryEl;
+// const answer = stringSeparator(spelledOutCountry);
+// console.log(answer);
+
+
+
+const submitButtonClick = () => {
+    updateMessage()
+    render()
 }
 
-const spelledOutCountry = playerEntryEl;
-const answer = stringSeparator(spelledOutCountry);
-console.log(answer);
 
-const getRandomFlag = () => {
-    const randomFlagIndex = Math.floor(Math.random() * countryFlagFolder.length);
-    const randomFlagImage = countryFlagFolder[randomFlagIndex];
-    const flag = document.createElement('img');
-    flag.src = randomFlagImage;
 
-    flags.innerHTML = ''; // Clear previous image, if any
-    flags.appendChild(imgElement);
-    console.log(getRandomFlag)
+const updateMessage = () => {
+    if(playerEntryEl === "Mexico") {
+        messageEl.textContent = `Correct!`
+    } else if(playerEntryEl !== "Mexico") {
+        messageEl.textContent = "Incorrect! Try Again!"
+    }
 }
 
-const handleGuess = () => {
-    if(playerEntryEl === "Mexico")
-        return "Correct"
-}
+
 
 /*----------- Event Listeners ----------*/
 playButtonElement.addEventListener('click', playButtonClick)
 
-resetButtonElement.addEventListener('click', init)
+playAgainButtonElement.addEventListener('click', init)
+
+submitButtonElement.addEventListener('click', submitButtonClick)
+
+nextButtonElement.addEventListener('click', nextButtonClick)
