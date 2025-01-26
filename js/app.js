@@ -48,6 +48,7 @@ const resetButtonElement = document.getElementById("restart")
 /* Inputs & Displays */
 const playerEntryEl = document.getElementById("player-entry")
 const flagDisplayEl = document.getElementById('flag-display');
+const messageEl = document.querySelector("#message")
 
 /* Flag Images */
 const flags = document.getElementById('flag-container');
@@ -109,6 +110,11 @@ const getRandomFlag = () => {
     flags.innerHTML = ''; // Clear previous image, if any
     flags.appendChild(imgElement);
     console.log(getRandomFlag)
+}
+
+const handleGuess = () => {
+    if(playerEntryEl === "Mexico")
+        return "Correct"
 }
 
 /*----------- Event Listeners ----------*/
