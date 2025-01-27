@@ -54,6 +54,7 @@ const messageEl = document.querySelector("#message")
 
 /* Flag Images */
 const flags = document.getElementById('flag-container');
+const flagImage = document.getElementById('flag-image')
 // const flagMexicoLabel = Mexico.alt;
 
 
@@ -69,7 +70,8 @@ const render = () => {
 
 const getRandomFlag = () => {
     const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
-    return countryFlagArray[randomFlagIndex];
+    const src = countryFlagArray[randomFlagIndex];
+    flagImage.src = src
 }
     
 const changeFlag = () => {
@@ -126,7 +128,10 @@ const submitButtonClick = () => {
     render()
 }
 
-
+const handleSubmission = (playerEntryEl, flagNames) => {
+    const lowerInput = playerEntryEl.toLowerCase()
+    if(lowerInput = [:-4])
+}
 
 const updateMessage = () => {
     if(playerEntryEl === "Mexico") {
