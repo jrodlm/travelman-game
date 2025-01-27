@@ -32,12 +32,44 @@ const countryFlagArray = [
     './assets/United-States.jpg',
 ]
 
+const flagObject = [
+    {
+        flagFile: './assets/Mexico.jpg',
+        flagName: "Mexico", 
+    },
+
+    {   
+        flagFile: './assets/India.jpg',
+        flagName: "India",
+    },
+
+    {   
+        flagFile: './assets/Canada.jpg',
+        flagName: "Canada",
+    },
+
+    {   
+        flagFile: './assets/China.jpg',
+        flagName: "China",
+    },
+    
+    {   
+        flagFile: './assets/Italy.jpg',
+        flagName: "Italy",
+    },
+    
+    {   
+        flagFile: './assets/United-States.jpg',
+        flagName: "United-States", 
+    },
+]
 /*---------- Variables (state) ---------*/
 
 let win;
 let lose;
 let gameOver;
 let outOfAttempts;
+let currentFlagIndex;
 
 /*----- Cached Element References  -----*/
 
@@ -62,18 +94,23 @@ const flagImage = document.getElementById('flag-image')
 
 const render = () => {
     // playerEntryEl.value = ""
-    if (gameOver === true) {
-        playAgainButtonElement.classList.remove('hidden')
-        // flags.remove('hidden')
-    }
+    // if (gameOver === true) {
+    //     playAgainButtonElement.classList.remove('hidden')
+    //     // flags.remove('hidden')
+    // }
 }
+
+// let flagObjectMap = (flagObject.map(flagName, flagImagefile) => {
+
+
+// })
 
 const getRandomFlag = () => {
     const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
     const src = countryFlagArray[randomFlagIndex];
     flagImage.src = src
 }
-    
+
 const changeFlag = () => {
     const flag = document.querySelector("#countryFlagArray");
     // flag.src = getRandomFlag();
@@ -92,7 +129,7 @@ const playButtonClick = () => {
 }
 
 const init = () => {
-    playButtonClick()
+    // playButtonClick()
     gameOver = false;
     render()
     console.log("init function is working")
@@ -124,22 +161,34 @@ const checkGameOver = () => {
 
 
 const submitButtonClick = () => {
-    updateMessage()
+    handleSubmission()
     render()
 }
 
-const handleSubmission = (playerEntryEl, flagNames) => {
+// const handleNextFlag = () => {
+//     currentFlagIndex = currentFlagIndex+1
+// }
+
+const handleSubmission = () => {
+    const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
+    const correctFlag = flagObject[randomFlagIndex].flagName.toLowerCase()
+    console.dir(playerEntryEl)
     const lowerInput = playerEntryEl.toLowerCase()
-    if(lowerInput = [:-4])
+    if(lowerInput === correctFlag) {
+        messageEl.textContent = "Correct!" 
+    } else if(lowerInput !== correctFlag) { 
+        messageEl.textContent = "Incorrect, try again!"  
+    }
+    // if(lowerInput = [:-4])
 }
 
-const updateMessage = () => {
-    if(playerEntryEl === "Mexico") {
-        messageEl.textContent = `Correct!`
-    } else if(playerEntryEl !== "Mexico") {
-        messageEl.textContent = "Incorrect! Try Again!"
-    }
-}
+// const updateMessage = () => {
+//     if (playerEntryEl === "Mexico") {
+//         messageEl.textContent = `Correct!`
+//     } else if (playerEntryEl !== "Mexico") {
+//         messageEl.textContent = "Incorrect! Try Again!"
+//     }
+// }
 
 
 
