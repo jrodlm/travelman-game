@@ -21,11 +21,22 @@ main .answer-display {
     border: 2px solid black;
     display: flex;
     justify-content: center;
-    
   }
 
 #answer-box-header {
   text-align: center;
+}
+
+#score-display {
+    width: 20%;
+    height: 25%; 
+    border: 1px solid black;
+    display: flex;
+    background: whitesmoke;
+    /* margin: auto; */
+    padding: 20px;
+    margin-left: -112px;
+    margin-top: 24px
 }
 
 main .flag-display {
@@ -43,9 +54,6 @@ main .flag-display {
   left:0;
   width:60%;
   height:60%;
-  background-image:'./assets/Travelman.png';
-  background-repeat:no-repeat;
-  background-size:contain;
   /* visibility: hidden; */
   display: flex;
   align-items: center;
@@ -54,7 +62,7 @@ main .flag-display {
 
 .flag-container img {
   display: flex;
-  width: 75%;
+  width: 110%;
   height: auto;
   align-items: center;
 
@@ -101,12 +109,12 @@ main .flag-display {
   padding: 8px 18px;
   margin: auto;
   margin-top: 15px;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 #message {
   text-align: center;
-  margin-top: 40px;
+  margin-top: -45px;
 }
 
 .game-button {

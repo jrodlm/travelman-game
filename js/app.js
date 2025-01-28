@@ -62,11 +62,47 @@ const flagObject = [
         flagFile: './assets/United-States.jpg',
         flagName: "United-States", 
     },
+
+    {   
+        flagFile: './assets/Brazil.jpg',
+        flagName: "Brazil", 
+    },
+
+    {   
+        flagFile: './assets/France.jpg',
+        flagName: "France", 
+    },
+
+    {   
+        flagFile: './assets/Great-Britain.jpg',
+        flagName: "Great-Britain", 
+    },
+
+    {   
+        flagFile: './assets/Nigeria.jpg',
+        flagName: "Nigeria", 
+    },
+
+    {   
+        flagFile: './assets/Ghana.jpg',
+        flagName: "Ghana", 
+    },
+
+    {   
+        flagFile: './assets/Greece.jpg',
+        flagName: "Greece", 
+    },
+
+    {   
+        flagFile: './assets/Jamaica.jpg',
+        flagName: "Jamaica", 
+    },
 ]
 /*---------- Variables (state) ---------*/
 
 let win;
 let lose;
+let score;
 let gameOver;
 let outOfAttempts;
 let currentFlagIndex;
@@ -84,16 +120,17 @@ const playerEntryEl = document.getElementById("player-entry")
 const flagDisplayEl = document.getElementById('flag-display');
 const messageEl = document.querySelector("#message")
 
-/* Flag Images */
+/* Images */
 const flags = document.getElementById('flag-container');
 const flagImage = document.getElementById('flag-image')
+const travelmanImage = document.getElementById("travelman-image")
 // const flagMexicoLabel = Mexico.alt;
 
 
 /*-------------- Functions -------------*/
 
 const render = () => {
-    // playerEntryEl.value = ""
+    playerEntryEl.value = ""
     // if (gameOver === true) {
     //     playAgainButtonElement.classList.remove('hidden')
     //     // flags.remove('hidden')
@@ -105,11 +142,29 @@ const render = () => {
 
 // })
 
-const getRandomFlag = () => {
-    const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
-    const src = countryFlagArray[randomFlagIndex];
+// const getRandomFlag = () => {
+//     const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
+//     const src = countryFlagArray[randomFlagIndex];
+//     flagImage.src = src
+// }
+
+const randomFlagIndex = () => {
+    let flagIndex = Math.floor(Math.random() * flagObject.length);
+    console.dir(flagIndex)
+    const src = flagObject[flagIndex].flagFile;
     flagImage.src = src
-}
+    return flagIndex
+    }
+
+// const getRandomFlag = () => {
+//     randomFlagIndex()
+//     console.log(randomFlagIndex)
+
+// }
+
+
+currentFlagIndex = randomFlagIndex() 
+console.log(currentFlagIndex)
 
 const changeFlag = () => {
     const flag = document.querySelector("#countryFlagArray");
@@ -117,13 +172,14 @@ const changeFlag = () => {
 }
 
 const nextButtonClick = () => {
-    changeFlag();
+    randomFlagIndex()
 }
 
 const playButtonClick = () => {
     playerEntryEl.value = "";
     messageEl.textContent = "";
-    getRandomFlag()
+    nextButtonElement.style.visibility = 'hidden'
+    randomFlagIndex()
     render()
     console.log("play button is working")
 }
@@ -161,7 +217,7 @@ const checkGameOver = () => {
 
 
 const submitButtonClick = () => {
-    handleSubmission()
+    checkAnswer()
     render()
 }
 
@@ -169,15 +225,21 @@ const submitButtonClick = () => {
 //     currentFlagIndex = currentFlagIndex+1
 // }
 
-const handleSubmission = () => {
-    const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
-    const correctFlag = flagObject[randomFlagIndex].flagName.toLowerCase()
+const checkAnswer = () => {
+    const correctFlag = flagObject[currentFlagIndex].flagName.toLowerCase()
     console.dir(playerEntryEl)
-    const lowerInput = playerEntryEl.toLowerCase()
-    if(lowerInput === correctFlag) {
+    console.log(correctFlag)
+    const lowerCaseInput = playerEntryEl.value.toLowerCase()
+    console.log(lowerCaseInput)
+    console.log(currentFlagIndex)
+    if(lowerCaseInput === correctFlag) {
         messageEl.textContent = "Correct!" 
-    } else if(lowerInput !== correctFlag) { 
+        messageEl.style.color = "#1A873B";
+        nextButtonElement.style.visibility = 'visible'
+    } else if(lowerCaseInput !== correctFlag) { 
         messageEl.textContent = "Incorrect, try again!"  
+        messageEl.style.color = "#CC0000";
+        nextButtonElement.style.visibility = 'hidden'
     }
     // if(lowerInput = [:-4])
 }
