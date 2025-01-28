@@ -98,6 +98,10 @@ const flagObject = [
         flagName: "Jamaica", 
     },
 ]
+
+const state = {
+    score: 0, 
+}
 /*---------- Variables (state) ---------*/
 
 let win;
@@ -119,6 +123,7 @@ const nextButtonElement = document.getElementById("next")
 const playerEntryEl = document.getElementById("player-entry")
 const flagDisplayEl = document.getElementById('flag-display');
 const messageEl = document.querySelector("#message")
+const scoreDisplayEl = document.getElementById('score-display')
 
 /* Images */
 const flags = document.getElementById('flag-container');
@@ -131,6 +136,7 @@ const travelmanImage = document.getElementById("travelman-image")
 
 const render = () => {
     playerEntryEl.value = ""
+    scoreDisplayEl.textContent = state.score
     // if (gameOver === true) {
     //     playAgainButtonElement.classList.remove('hidden')
     //     // flags.remove('hidden')
@@ -233,6 +239,7 @@ const checkAnswer = () => {
     console.log(lowerCaseInput)
     console.log(currentFlagIndex)
     if(lowerCaseInput === correctFlag) {
+        state.score += 100;
         messageEl.textContent = "Correct!" 
         messageEl.style.color = "#1A873B";
         nextButtonElement.style.visibility = 'visible'

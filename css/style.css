@@ -1,5 +1,16 @@
 h1, h3 {
     text-align: center;
+    /* color: white; */
+    color: black;
+}
+
+#game-instructions {
+    /* color: white; */
+    color: black;
+}
+
+body {
+  /* background-color: #151922; */
 }
 
 
@@ -18,31 +29,39 @@ h1, h3 {
 main .answer-display {
     width: 40%;
     height: 50%; 
+    /* border: 6px solid white; */
     border: 2px solid black;
     display: flex;
     justify-content: center;
+    /* color: white; */
   }
 
 #answer-box-header {
   text-align: center;
+  /* font-size: larger; */
 }
 
 #score-display {
-    width: 20%;
-    height: 25%; 
-    border: 1px solid black;
+    width: 5%;
+    height: 5%; 
+    /* border: 4px solid white; */
+    border: 2px solid black;
+    /* border: 4px solid black; */
     display: flex;
-    background: whitesmoke;
-    /* margin: auto; */
-    padding: 20px;
-    margin-left: -112px;
-    margin-top: 24px
+    /* background: black; */
+    background: white;
+    margin: auto;
+    padding: 18px;
+    margin-left: -98px;
+    margin-top: 4px;
+    align-items: center;
 }
 
 main .flag-display {
     width: 50%; /* Each item takes up 50% of the container width */
     height: 50%; /* Each item takes up 50% of the container height */
-    border: 2px solid black; /* Optional border for visual clarity */
+    /* border: 6px solid white; Optional border for visual clarity */
+    border: 2px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,6 +134,7 @@ main .flag-display {
 #message {
   text-align: center;
   margin-top: -45px;
+  font-size: 20px;
 }
 
 .game-button {
