@@ -15,10 +15,24 @@
         <p id="result-display"></p>
     </header>
     <main>
-        <h3>How To Play: </h3>
-        <p id="game-instructions">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, adipisci.
-        Expedita laboriosam mollitia velit et rerum nam ea quis magni!
-        Distinctio sint sequi dolorem consequuntur laudantium voluptate culpa nihil ad.</p>
+        <h3>Game Overview </h3>
+        <p id="game-instructions">
+            Travelman is an engaging trivia game where you identify countries based on their flags. Each round challenges you to guess the name of the country using only its flag as a clue.
+            <br>
+            <br>
+            <b>Objective:</b>
+            You have 5 guesses total to correctly identify as many flags as possible.
+            To win, successfully guess all the flags shown without exhausting your 5 guesses.
+            <br>
+            <br>
+            <b>How to Play:</b>
+            Each round displays a flag on the right side of the screen. Type the full name of the country into the input field.
+            Click the Submit button to lock in your answer. If your guess is correct, you’ll see a "Correct!" message and you'll be able to click "Next" to move on to the next flag.
+            If your guess is incorrect, you’ll lose one of your 5 total guesses.
+            <br>
+            <br>
+            
+            </p>
         <div class="main-game-container">
             <div class="answer-display"><section class="player-entry-section">
                 <p id="answer-box-header">What Country Is It? 🤔 🌍 </p>
@@ -26,6 +40,7 @@
                   <div><button id="submit" class="submit-button">Submit</button></div>
                   <div><button id="next" class="next-button">Next</button></div>
                     <div><p id="score-display"></p></div>
+                    <div><p id="guess-display"></p></div>
                 <div><p id="message"></p></div>
                
                 </div>
@@ -39,8 +54,8 @@
 
         </div>
     <div class="buttons">
-        <button id="play" class="game-button">Play</button>
-        <button id="restart" class="hidden">Play Again</button>
+        <button id="play" class="play-button">Play</button>
+        <button id="restart" class="play-again-button">Play Again</button>
     </div>
     </main>
 </body>

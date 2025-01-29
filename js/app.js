@@ -1,6 +1,4 @@
 
-console.log("this is a test")
-
 /* Psuedocode */
 
 // need game initialization state 
@@ -17,20 +15,19 @@ console.log("this is a test")
 // will start with 20-30 countries that are easy to spell and represent this game's MVP. 
 // will need to use the DOM to post the picture associated with the word every time the game is played. 
 
+// For advanced true hangman style approach
+
+// const stringSeparator = (playerEntryEl) => {
+//     return playerEntryEl.textContent.split('');
+//     console.log(stringSeparator)
+// }
+
+// const spelledOutCountry = playerEntryEl;
+// const answer = stringSeparator(spelledOutCountry);
+// console.log(answer);
+
 
 /*-------------- Constants -------------*/
-
-
-const maxGuesses = 5;
-
-const countryFlagArray = [
-    './assets/Mexico.jpg',
-    './assets/India.jpg',
-    './assets/Canada.jpg',
-    './assets/China.jpg',
-    './assets/Italy.jpg',
-    './assets/United-States.jpg',
-]
 
 const flagObject = [
     {
@@ -111,6 +108,9 @@ let gameOver;
 let outOfAttempts;
 let currentFlagIndex;
 
+const maxGuesses = 5;
+let guessesRemaining = maxGuesses;
+
 /*----- Cached Element References  -----*/
 
 /* Buttons */
@@ -121,38 +121,49 @@ const nextButtonElement = document.getElementById("next")
 
 /* Inputs & Displays */
 const playerEntryEl = document.getElementById("player-entry")
-const flagDisplayEl = document.getElementById('flag-display');
+// const flagDisplayEl = document.getElementById('flag-display');
 const messageEl = document.querySelector("#message")
 const scoreDisplayEl = document.getElementById('score-display')
+const guessesLeftEl = document.getElementById('guess-display')
 
 /* Images */
-const flags = document.getElementById('flag-container');
+const flagContainer = document.getElementById('flag-container');
 const flagImage = document.getElementById('flag-image')
-const travelmanImage = document.getElementById("travelman-image")
-// const flagMexicoLabel = Mexico.alt;
+const travelmanImage = document.createElement("travelman-image")
 
 
 /*-------------- Functions -------------*/
 
+const init = () => {
+    submitButtonElement.disabled = true
+    playerEntryEl.disabled = true
+    nextButtonElement.style.visibility = 'hidden'
+    playAgainButtonElement.style.visibility = 'hidden'
+    scoreDisplayEl.style.visibility = 'hidden'
+    guessesLeftEl.style.visibility = 'hidden'
+    // scoreDisplayEl.textContent = state.score
+    // travelmanImage.src = "./assets/Travelman.png"
+    // flagImage.appendChild(travelmanImage)
+}
+
+init()
+
 const render = () => {
     playerEntryEl.value = ""
     scoreDisplayEl.textContent = state.score
-    // if (gameOver === true) {
-    //     playAgainButtonElement.classList.remove('hidden')
-    //     // flags.remove('hidden')
-    // }
+    guessesLeftEl.textContent = `Guesses Left: ${guessesRemaining}`
 }
 
-// let flagObjectMap = (flagObject.map(flagName, flagImagefile) => {
-
-
-// })
-
-// const getRandomFlag = () => {
-//     const randomFlagIndex = Math.floor(Math.random() * countryFlagArray.length);
-//     const src = countryFlagArray[randomFlagIndex];
-//     flagImage.src = src
-// }
+const playButtonClick = () => {
+    messageEl.textContent = "";
+    submitButtonElement.disabled = false
+    playerEntryEl.disabled = false
+    scoreDisplayEl.style.visibility = 'visible'
+    guessesLeftEl.style.visibility = 'visible'
+    nextButtonElement.style.visibility = 'hidden'
+    randomFlagIndex()
+    render()
+}
 
 const randomFlagIndex = () => {
     let flagIndex = Math.floor(Math.random() * flagObject.length);
@@ -162,74 +173,25 @@ const randomFlagIndex = () => {
     return flagIndex
     }
 
-// const getRandomFlag = () => {
-//     randomFlagIndex()
-//     console.log(randomFlagIndex)
-
-// }
-
-
 currentFlagIndex = randomFlagIndex() 
 console.log(currentFlagIndex)
 
-const changeFlag = () => {
-    const flag = document.querySelector("#countryFlagArray");
-    // flag.src = getRandomFlag();
-}
-
 const nextButtonClick = () => {
-    randomFlagIndex()
+    currentFlagIndex = randomFlagIndex() 
+    submitButtonElement.disabled = false
+    playerEntryEl.disabled = false
 }
-
-const playButtonClick = () => {
-    playerEntryEl.value = "";
-    messageEl.textContent = "";
-    nextButtonElement.style.visibility = 'hidden'
-    randomFlagIndex()
-    render()
-    console.log("play button is working")
-}
-
-const init = () => {
-    // playButtonClick()
-    gameOver = false;
-    render()
-    console.log("init function is working")
-}
-
-init()
-
-
 
 
 const checkGameOver = () => {
-    for (let i = 0; i < playerEntryEl.length; i++) {
-        if (i !== "" && playerEntryEl === flagMexicoLabel.stringSeparator)
-            gameOver = false
-        // } else {
-        //     resetButtonElement.classList.remove('hidden') 
-    }
+    if(guessesRemaining === 0) {
+    messageEl.textContent = "You Lose - Game Over." 
+    submitButtonElement.disabled = true
+    playerEntryEl.disabled = true
+    playButtonElement.disabled = true
+    playAgainButtonElement.style.visibility = 'visible'
 }
-
-// const stringSeparator = (playerEntryEl) => {
-//     return playerEntryEl.textContent.split('');
-//     console.log(stringSeparator)
-// }
-
-// const spelledOutCountry = playerEntryEl;
-// const answer = stringSeparator(spelledOutCountry);
-// console.log(answer);
-
-
-
-const submitButtonClick = () => {
-    checkAnswer()
-    render()
 }
-
-// const handleNextFlag = () => {
-//     currentFlagIndex = currentFlagIndex+1
-// }
 
 const checkAnswer = () => {
     const correctFlag = flagObject[currentFlagIndex].flagName.toLowerCase()
@@ -243,28 +205,39 @@ const checkAnswer = () => {
         messageEl.textContent = "Correct!" 
         messageEl.style.color = "#1A873B";
         nextButtonElement.style.visibility = 'visible'
+        submitButtonElement.style.visiblity = 'hidden'
+        submitButtonElement.disabled = true
+        playerEntryEl.disabled = true
     } else if(lowerCaseInput !== correctFlag) { 
         messageEl.textContent = "Incorrect, try again!"  
         messageEl.style.color = "#CC0000";
         nextButtonElement.style.visibility = 'hidden'
+        guessesLeftEl.textContent = `Guesses Left: ${guessesRemaining -= 1}`
+        checkGameOver()
     }
-    // if(lowerInput = [:-4])
 }
 
-// const updateMessage = () => {
-//     if (playerEntryEl === "Mexico") {
-//         messageEl.textContent = `Correct!`
-//     } else if (playerEntryEl !== "Mexico") {
-//         messageEl.textContent = "Incorrect! Try Again!"
-//     }
-// }
+const submitButtonClick = () => {
+    checkAnswer()
+    render()
+    console.dir(playerEntryEl)
+}
 
-
+const playAgainButtonClick = () => {
+    messageEl.textContent = "";
+    submitButtonElement.disabled = false
+    playerEntryEl.disabled = false
+    scoreDisplayEl.style.visibility = 'visible'
+    guessesLeftEl.style.visibility = 'visible'
+    nextButtonElement.style.visibility = 'hidden'
+    randomFlagIndex()
+    render()
+}
 
 /*----------- Event Listeners ----------*/
 playButtonElement.addEventListener('click', playButtonClick)
 
-playAgainButtonElement.addEventListener('click', init)
+playAgainButtonElement.addEventListener('click', playAgainButtonClick)
 
 submitButtonElement.addEventListener('click', submitButtonClick)
 
