@@ -134,34 +134,20 @@ const travelmanImage = document.createElement("travelman-image")
 
 /*-------------- Functions -------------*/
 
-const init = () => {
-    submitButtonElement.disabled = true
-    playerEntryEl.disabled = true
-    nextButtonElement.style.visibility = 'hidden'
-    playAgainButtonElement.style.visibility = 'hidden'
-    scoreDisplayEl.style.visibility = 'hidden'
-    guessesLeftEl.style.visibility = 'hidden'
-    // scoreDisplayEl.textContent = state.score
-    // travelmanImage.src = "./assets/Travelman.png"
-    // flagImage.appendChild(travelmanImage)
-}
-
-init()
-
 const render = () => {
     playerEntryEl.value = ""
     scoreDisplayEl.textContent = state.score
     guessesLeftEl.textContent = `Guesses Left: ${guessesRemaining}`
 }
 
-const playButtonClick = () => {
-    messageEl.textContent = "";
-    submitButtonElement.disabled = false
-    playerEntryEl.disabled = false
-    scoreDisplayEl.style.visibility = 'visible'
-    guessesLeftEl.style.visibility = 'visible'
+const init = () => {
+    state.score = 0;
+    playerEntryEl.disabled = true
+    submitButtonElement.disabled = true
     nextButtonElement.style.visibility = 'hidden'
-    randomFlagIndex()
+    playAgainButtonElement.style.visibility = 'hidden'
+    flagImage.src = "./assets/Travelman.png"
+    // flagImage.appendChild(travelmanImage)
     render()
 }
 
@@ -170,6 +156,7 @@ const randomFlagIndex = () => {
     console.dir(flagIndex)
     const src = flagObject[flagIndex].flagFile;
     flagImage.src = src
+    currentFlagIndex = flagIndex
     return flagIndex
     }
 
@@ -179,8 +166,19 @@ console.log(currentFlagIndex)
 const nextButtonClick = () => {
     currentFlagIndex = randomFlagIndex() 
     submitButtonElement.disabled = false
-    playerEntryEl.disabled = false
+    // playerEntryEl.disabled = false
 }
+
+const playButtonClick = () => {
+    playerEntryEl.disabled = false
+    playerEntryEl.value = "";
+    messageEl.textContent = "";
+    submitButtonElement.disabled = false
+    nextButtonElement.style.visibility = 'hidden'
+    randomFlagIndex()
+    render()
+}
+
 
 
 const checkGameOver = () => {
@@ -192,6 +190,7 @@ const checkGameOver = () => {
     playAgainButtonElement.style.visibility = 'visible'
 }
 }
+
 
 const checkAnswer = () => {
     const correctFlag = flagObject[currentFlagIndex].flagName.toLowerCase()
@@ -207,7 +206,6 @@ const checkAnswer = () => {
         nextButtonElement.style.visibility = 'visible'
         submitButtonElement.style.visiblity = 'hidden'
         submitButtonElement.disabled = true
-        playerEntryEl.disabled = true
     } else if(lowerCaseInput !== correctFlag) { 
         messageEl.textContent = "Incorrect, try again!"  
         messageEl.style.color = "#CC0000";
@@ -215,13 +213,15 @@ const checkAnswer = () => {
         guessesLeftEl.textContent = `Guesses Left: ${guessesRemaining -= 1}`
         checkGameOver()
     }
+    render()
 }
 
 const submitButtonClick = () => {
     checkAnswer()
-    render()
+    // render()
     console.dir(playerEntryEl)
 }
+
 
 const playAgainButtonClick = () => {
     messageEl.textContent = "";
@@ -242,3 +242,5 @@ playAgainButtonElement.addEventListener('click', playAgainButtonClick)
 submitButtonElement.addEventListener('click', submitButtonClick)
 
 nextButtonElement.addEventListener('click', nextButtonClick)
+
+init()
