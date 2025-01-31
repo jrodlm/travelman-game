@@ -15,89 +15,77 @@
 // will start with 20-30 countries that are easy to spell and represent this game's MVP. 
 // will need to use the DOM to post the picture associated with the word every time the game is played. 
 
-// For advanced true hangman style approach
-
-// const stringSeparator = (playerEntryEl) => {
-//     return playerEntryEl.textContent.split('');
-//     console.log(stringSeparator)
-// }
-
-// const spelledOutCountry = playerEntryEl;
-// const answer = stringSeparator(spelledOutCountry);
-// console.log(answer);
-
-
 /*-------------- Constants -------------*/
 
 const flagObject = [
     {
         flagFile: './assets/Mexico.jpg',
-        flagName: "Mexico", 
+        flagName: "Mexico",
     },
 
-    {   
+    {
         flagFile: './assets/India.jpg',
         flagName: "India",
     },
 
-    {   
+    {
         flagFile: './assets/Canada.jpg',
         flagName: "Canada",
     },
 
-    {   
+    {
         flagFile: './assets/China.jpg',
         flagName: "China",
     },
-    
-    {   
+
+    {
         flagFile: './assets/Italy.jpg',
         flagName: "Italy",
     },
-    
-    {   
+
+    {
         flagFile: './assets/United-States.jpg',
-        flagName: "United-States", 
+        flagName: "United-States",
     },
 
-    {   
+    {
         flagFile: './assets/Brazil.jpg',
-        flagName: "Brazil", 
+        flagName: "Brazil",
     },
 
-    {   
+    {
         flagFile: './assets/France.jpg',
-        flagName: "France", 
+        flagName: "France",
     },
 
-    {   
+    {
         flagFile: './assets/Great-Britain.jpg',
-        flagName: "Great-Britain", 
+        flagName: "Great-Britain",
     },
 
-    {   
+    {
         flagFile: './assets/Nigeria.jpg',
-        flagName: "Nigeria", 
+        flagName: "Nigeria",
     },
 
-    {   
+    {
         flagFile: './assets/Ghana.jpg',
-        flagName: "Ghana", 
+        flagName: "Ghana",
     },
 
-    {   
+    {
         flagFile: './assets/Greece.jpg',
-        flagName: "Greece", 
+        flagName: "Greece",
     },
 
-    {   
+    {
         flagFile: './assets/Jamaica.jpg',
-        flagName: "Jamaica", 
+        flagName: "Jamaica",
     },
 ]
 
 const state = {
-    score: 0, 
+    score: 0,
 }
 /*---------- Variables (state) ---------*/
 
@@ -121,7 +109,6 @@ const nextButtonElement = document.getElementById("next")
 
 /* Inputs & Displays */
 const playerEntryEl = document.getElementById("player-entry")
-// const flagDisplayEl = document.getElementById('flag-display');
 const messageEl = document.querySelector("#message")
 const scoreDisplayEl = document.getElementById('score-display')
 const guessesLeftEl = document.getElementById('guess-display')
@@ -133,7 +120,6 @@ const travelmanImage = document.createElement("travelman-image")
 
 
 /*-------------- Functions -------------*/
-
 const render = () => {
     playerEntryEl.value = ""
     scoreDisplayEl.textContent = state.score
@@ -147,7 +133,6 @@ const init = () => {
     nextButtonElement.style.visibility = 'hidden'
     playAgainButtonElement.style.visibility = 'hidden'
     flagImage.src = "./assets/Travelman.png"
-    // flagImage.appendChild(travelmanImage)
     render()
 }
 
@@ -158,15 +143,14 @@ const randomFlagIndex = () => {
     flagImage.src = src
     currentFlagIndex = flagIndex
     return flagIndex
-    }
+}
 
-currentFlagIndex = randomFlagIndex() 
+currentFlagIndex = randomFlagIndex()
 console.log(currentFlagIndex)
 
 const nextButtonClick = () => {
-    currentFlagIndex = randomFlagIndex() 
+    currentFlagIndex = randomFlagIndex()
     submitButtonElement.disabled = false
-    // playerEntryEl.disabled = false
 }
 
 const playButtonClick = () => {
@@ -179,18 +163,15 @@ const playButtonClick = () => {
     render()
 }
 
-
-
 const checkGameOver = () => {
-    if(guessesRemaining === 0) {
-    messageEl.textContent = "You Lose - Game Over." 
-    submitButtonElement.disabled = true
-    playerEntryEl.disabled = true
-    playButtonElement.disabled = true
-    playAgainButtonElement.style.visibility = 'visible'
+    if (guessesRemaining === 0) {
+        messageEl.textContent = "You Lose - Game Over."
+        submitButtonElement.disabled = true
+        playerEntryEl.disabled = true
+        playButtonElement.disabled = true
+        playAgainButtonElement.style.visibility = 'visible'
+    }
 }
-}
-
 
 const checkAnswer = () => {
     const correctFlag = flagObject[currentFlagIndex].flagName.toLowerCase()
@@ -199,15 +180,15 @@ const checkAnswer = () => {
     const lowerCaseInput = playerEntryEl.value.toLowerCase()
     console.log(lowerCaseInput)
     console.log(currentFlagIndex)
-    if(lowerCaseInput === correctFlag) {
+    if (lowerCaseInput === correctFlag) {
         state.score += 100;
-        messageEl.textContent = "Correct!" 
+        messageEl.textContent = "Correct!"
         messageEl.style.color = "#1A873B";
         nextButtonElement.style.visibility = 'visible'
         submitButtonElement.style.visiblity = 'hidden'
         submitButtonElement.disabled = true
-    } else if(lowerCaseInput !== correctFlag) { 
-        messageEl.textContent = "Incorrect, try again!"  
+    } else if (lowerCaseInput !== correctFlag) {
+        messageEl.textContent = "Incorrect, try again!"
         messageEl.style.color = "#CC0000";
         nextButtonElement.style.visibility = 'hidden'
         guessesLeftEl.textContent = `Guesses Left: ${guessesRemaining -= 1}`
