@@ -21,66 +21,79 @@ const flagObject = [
     {
         flagFile: './assets/Mexico.jpg',
         flagName: "Mexico",
+        alt: "Mexico Flag",
     },
 
     {
         flagFile: './assets/India.jpg',
         flagName: "India",
+        alt: "India Flag",
     },
 
     {
         flagFile: './assets/Canada.jpg',
         flagName: "Canada",
+        alt: "Canada Flag",
     },
 
     {
         flagFile: './assets/China.jpg',
         flagName: "China",
+        alt: "China Flag",
     },
 
     {
         flagFile: './assets/Italy.jpg',
         flagName: "Italy",
+        alt: "Italy Flag",
     },
 
     {
         flagFile: './assets/United-States.jpg',
         flagName: "United-States",
+        alt: "United States Flag",
     },
 
     {
         flagFile: './assets/Brazil.jpg',
         flagName: "Brazil",
+        alt: "Brazil Flag",
     },
 
     {
         flagFile: './assets/France.jpg',
         flagName: "France",
+        alt: "France Flag",
     },
 
     {
         flagFile: './assets/Great-Britain.jpg',
         flagName: "Great-Britain",
+        alt: "Great Britain Flag",
     },
 
     {
         flagFile: './assets/Nigeria.jpg',
         flagName: "Nigeria",
+        alt: "Nigeria Flag",
     },
 
     {
         flagFile: './assets/Ghana.jpg',
         flagName: "Ghana",
+        alt: "Ghana Flag",
     },
 
     {
         flagFile: './assets/Greece.jpg',
         flagName: "Greece",
+        alt: "Greece Flag",
     },
 
     {
         flagFile: './assets/Jamaica.jpg',
         flagName: "Jamaica",
+        alt: "Jamaica Flag",
     },
 ]
 
@@ -138,7 +151,6 @@ const init = () => {
 
 const randomFlagIndex = () => {
     let flagIndex = Math.floor(Math.random() * flagObject.length);
-    console.dir(flagIndex)
     const src = flagObject[flagIndex].flagFile;
     flagImage.src = src
     currentFlagIndex = flagIndex
@@ -146,7 +158,6 @@ const randomFlagIndex = () => {
 }
 
 currentFlagIndex = randomFlagIndex()
-console.log(currentFlagIndex)
 
 const nextButtonClick = () => {
     currentFlagIndex = randomFlagIndex()
@@ -175,11 +186,7 @@ const checkGameOver = () => {
 
 const checkAnswer = () => {
     const correctFlag = flagObject[currentFlagIndex].flagName.toLowerCase()
-    console.dir(playerEntryEl)
-    console.log(correctFlag)
     const lowerCaseInput = playerEntryEl.value.toLowerCase()
-    console.log(lowerCaseInput)
-    console.log(currentFlagIndex)
     if (lowerCaseInput === correctFlag) {
         state.score += 100;
         messageEl.textContent = "Correct!"
@@ -199,8 +206,6 @@ const checkAnswer = () => {
 
 const submitButtonClick = () => {
     checkAnswer()
-    // render()
-    console.dir(playerEntryEl)
 }
 
 

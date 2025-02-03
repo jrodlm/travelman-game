@@ -1,24 +1,26 @@
 h1,
 h3 {
   text-align: center;
-  /* color: white; */
-  color: black;
+  color: white;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
+
 }
 
 h3 {
   text-align: left;
-  /* color: white; */
-  color: black;
+  color: white;
 }
 
 #game-instructions {
-  /* color: white; */
-  color: black;
+  color: white;
   text-align: left;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
 }
 
 body {
-  /* background-color: #151922; */
+  background-color: #151922;
 }
 
 
@@ -26,9 +28,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 1000px;
-  /* Adjust width as needed */
   height: 600px;
-  /* Adjust height as needed */
   justify-content: space-evenly;
   margin: auto;
   margin-bottom: 0px;
@@ -39,57 +39,57 @@ body {
 main .answer-display {
   width: 40%;
   height: 50%;
-  /* border: 6px solid white; */
-  border: 2px solid black;
+  border: 6px solid white;
   display: flex;
   justify-content: center;
-  /* color: white; */
+  color: white;
 }
 
 #answer-box-header {
   text-align: center;
-  /* font-size: larger; */
+  font-size: larger;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
 }
 
 #score-display {
   width: 15%;
   height: 5%;
-  /* border: 4px solid white; */
-  border: 2px solid black;
-  /* border: 4px solid black; */
+  border: 4px solid white;
   display: flex;
-  /* background: black; */
   background: white;
   margin: auto;
-  padding: 18px;
-  margin-left: -114px;
-  margin-top: 4px;
+  padding: 8px;
+  margin-left: -87px;
+  margin-top: 18px;
   align-items: center;
   text-align: center;
+  color: black;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
 }
 
 #guess-display {
   width: 50%;
   height: 5%;
-  /* border: 4px solid white; */
-  border: 2px solid black;
-  /* border: 4px solid black; */
+  border: 4px solid white;
   display: flex;
-  /* background: black; */
   background: white;
   margin: auto;
   padding: 6px;
-  margin-right: -112px;
-  margin-top: -26px;
+  margin-right: -87px;
+  margin-top: -34px;
   justify-content: flex-end;
   font-size: small;
+  color: black;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
 }
 
 main .flag-display {
   width: 50%;
   height: 50%;
-  /* border: 6px solid white; */
-  border: 2px solid black;
+  border: 6px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,6 +133,8 @@ main .flag-display {
   /* visibility: hidden; */
   margin-top: -250px;
   margin-left: -150px;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
 }
 
 .submit-button {
@@ -146,6 +148,8 @@ main .flag-display {
   margin: auto;
   margin-top: 30px;
   visibility: visible;
+  font-family: "Funnel Display", serif;
+  font-optical-sizing: auto;
 }
 
 .next-button {
@@ -186,5 +190,5 @@ main .flag-display {
   color: black;
   border-radius: 50px;
   padding: 8px 26px;
-  /* visibility: hidden; */
+  visibility: hidden;
 }
