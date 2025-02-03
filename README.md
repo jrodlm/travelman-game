@@ -1,3 +1,6 @@
+
+![Travelman](https://github.com/user-attachments/assets/c578a1bd-927e-4320-87ba-bfdef66c337e)
+
 # travelman-game
 This is a hangman-style game using the countries of the world as part of the game. 
 
@@ -7,6 +10,8 @@ The game's concept is that the user will have a set number of attempts to figure
 They win each time they get an answer right within the allotted number of guesses.
 They lose if they don’t get it right within the allotted number of guesses. 
 The only clue for any user will be a picture of the country on one side of the screen. 
+
+Game Deployment Link: https://jrodlm.github.io/travelman-game/ 
 
 Pseudocode 
 // need game initialization state 
@@ -23,11 +28,11 @@ Pseudocode
 // will need to use the DOM to post the picture associated with the word every time the game is played. 
 
 
+Technologies used: HTML, CSS, and JavaScript. 
+
+High Level Roadmap 
 Level-Up features (may be added later) 
 The game will include beginner, intermediate, hard modes. A timer may be added for extra complexity. 
-A beginner will offer a certain number of letters to the word 
-Intermediate will offer fewer letters
-The hard mode will offer no letters to the word. 
 Super hard adds a timer.
 As a gamification element, I want the user to be able to level up. Each corresponding country may be given a level or level based on every 5-10 correct answers. 
 I’m thinking of adding lives to the game so that you can have three lives to continue the game. 
